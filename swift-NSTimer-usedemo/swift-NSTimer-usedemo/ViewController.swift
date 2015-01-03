@@ -35,9 +35,10 @@ class ViewController: UIViewController {
     }
     
     // 创建定时器并开启记时
-    func timerCreate(){
-        timer2 = NSTimer(timeInterval: 5, target: self, selector: "doSecondTask:", userInfo: nil, repeats: true)//创建
-        NSRunLoop.currentRunLoop().addTimer(timer2, forMode: NSRunLoopCommonModes)//开始记时
+    func timerCreate() ->NSTimer{
+        var timer = NSTimer(timeInterval: 5, target: self, selector: "doSecondTask:", userInfo: nil, repeats: true)//创建
+        NSRunLoop.currentRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)//开始记时
+        return timer
     }
     
     
@@ -68,7 +69,7 @@ class ViewController: UIViewController {
         
         if sender.titleLabel?.text! == "开始定时器二"{
             if timer2 == nil{
-                initTimer2()
+                timer2 = timerCreate()
             }else{
                 timerPause(timer2)
             }
